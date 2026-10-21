@@ -82,7 +82,7 @@ export default function Countdown({ config }: { config: LaunchConfig }) {
           )}
         </div>
 
-        <div className="mt-8 flex min-h-20 items-center justify-center sm:mt-12">
+        <div className="mt-8 flex min-h-24 items-center justify-center sm:mt-12">
           <AnimatePresence>
             {done && !launching && (config.mode === "button" || startedLate) && (
               <motion.button
@@ -99,13 +99,6 @@ export default function Countdown({ config }: { config: LaunchConfig }) {
               </motion.button>
             )}
           </AnimatePresence>
-          {!done && (
-            <p className="text-sm text-muted">
-              {config.mode === "auto"
-                ? `Auto-redirects to ${host} at zero`
-                : `A launch button for ${host} appears at zero`}
-            </p>
-          )}
         </div>
       </div>
 
