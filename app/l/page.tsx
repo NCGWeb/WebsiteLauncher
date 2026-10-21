@@ -18,7 +18,7 @@ async function Launch({ searchParams }: Pick<PageProps<"/l">, "searchParams">) {
       </main>
     );
   }
-  return <Countdown config={config} />;
+  return <Countdown key={`${config.target}|${config.url}|${config.mode}`} config={config} />;
 }
 
 export default function LaunchPage({ searchParams }: PageProps<"/l">) {

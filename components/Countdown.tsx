@@ -47,6 +47,16 @@ export default function Countdown({ config }: { config: LaunchConfig }) {
   // target time shows the button instead, to avoid a surprise redirect.
   const launching = manualLaunch || (done && config.mode === "auto" && startedLate === false);
 
+  // Coming back via the browser Back button can restore this page from the bfcache
+  // mid-launch; reset so the overlay does not stay stuck.
+  useEffect(() => {
+    const onShow = (e: PageTransitionEvent) => {
+      if (e.persisted) window.location.reload();
+    };
+    window.addEventListener("pageshow", onShow);
+    return () => window.removeEventListener("pageshow", onShow);
+  }, []);
+
   const t = splitDuration(config.target - (now ?? config.target));
   const host = new URL(config.url).hostname;
 
