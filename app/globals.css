@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+  --background: #07070d;
+  --foreground: #ececf4;
+  --muted: #9a9ab0;
+  --accent: #8b7cff;
+  --accent-2: #36d6c3;
+  --card: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-card: var(--card);
+  --color-line: var(--border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(60rem 40rem at 15% -10%, rgba(139, 124, 255, 0.22), transparent 60%),
+    radial-gradient(50rem 40rem at 95% 110%, rgba(54, 214, 195, 0.16), transparent 60%),
+    var(--background);
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #fff, transparent),
+    radial-gradient(1px 1px at 120px 90px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 210px 160px, #cfc8ff, transparent),
+    radial-gradient(1px 1px at 300px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 70px 200px, #bff, transparent);
+  background-size: 340px 240px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
