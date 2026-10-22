@@ -58,7 +58,6 @@ export default function Countdown({ config }: { config: LaunchConfig }) {
   }, []);
 
   const t = splitDuration(config.target - (now ?? config.target));
-  const host = new URL(config.url).hostname;
 
   return (
     <main className="relative flex flex-1 flex-col items-center justify-center px-4 py-10 text-center sm:px-6">
@@ -71,13 +70,14 @@ export default function Countdown({ config }: { config: LaunchConfig }) {
           {done ? "Ready for launch" : "Launching soon"}
         </p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
-          {config.title || host}
+          {config.title || (done ? "It's time." : "Something new is almost here")}
         </h1>
-        {config.message && (
-          <p className="mx-auto mt-4 max-w-xl whitespace-pre-line text-base text-muted sm:text-xl">
-            {config.message}
-          </p>
-        )}
+        <p className="mx-auto mt-4 max-w-xl whitespace-pre-line text-base text-muted sm:text-xl">
+          {config.message ||
+            (done
+              ? "Everything is ready. Press launch when you are."
+              : "Great things take a little time. Stay close, we go live shortly.")}
+        </p>
 
         <div className="mt-8 flex gap-2 sm:mt-12 sm:gap-4" aria-live="off" role="timer">
           {now === null ? (
